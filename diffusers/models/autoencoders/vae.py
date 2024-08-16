@@ -288,46 +288,31 @@ class Decoder(nn.Module):
         latent_embeds: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         if s_v!=None:
-            sample = z + s_v  # !!!changed
+            sample = z + s_v 
             sample = self.conv_in(sample)
-            s_v = self.conv_in(s_v)  # !!!changed
-            # middle
-            # sample = self.mid_block(sample)  # !!!changed
-            sample = self.mid_block(sample + s_v)  # !!!changed
-            # sample = self.mid_block(sample)
-            s_v = self.mid_block(s_v)  # !!!change
-            # sample = sample + s_v
-
-            # up
-            # length = 4
+            s_v = self.conv_in(s_v)  
+            sample = self.mid_block(sample + s_v) 
+            s_v = self.mid_block(s_v)  
             count = 0
             for up_block in self.up_blocks:
                 if count < 3:
-                    sample = up_block(sample + s_v)  # !!!changed
-                    # sample = up_block(sample) 
-                    s_v = up_block(s_v)  # !!!changed
+                    sample = up_block(sample + s_v) 
+                    s_v = up_block(s_v)  
                     count + 1
                 else:
                     sample = up_block(sample)
-                # sample = up_block(sample)
-
-            # post-process
-            sample = self.conv_norm_out(sample)  # !!!changed
+            sample = self.conv_norm_out(sample) 
             sample = self.conv_act(sample)
             sample = self.conv_out(sample)
-            # ---------------------------------
         else:
             sample = z
             sample = self.conv_in(sample)
 
-            # middle
             sample = self.mid_block(sample)
 
-            # up
             for up_block in self.up_blocks:
                 sample = up_block(sample)
 
-            # post-process
             sample = self.conv_norm_out(sample)
             sample = self.conv_act(sample)
             sample = self.conv_out(sample)

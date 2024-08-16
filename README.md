@@ -1,6 +1,6 @@
 Implementation of DistriMark
 ===
-
+<embed src="./method.pdf" type="application/pdf" width="600" height="400" />
 Step1: Pre-training Message Encoder-Decoder:
 
 The training objective of the message encoder is to construct a unified representation of messages and latent variables under a standard Gaussian distribution. 

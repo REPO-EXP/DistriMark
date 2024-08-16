@@ -202,8 +202,6 @@ for k in range(args.steps):
                 merged_tensor = torch.cat([tensor1, tensor2,tensor3,tensor4], dim=2)  # 在横向（dim=2）合并
                 to_pil = transforms.ToPILImage()
                 merged_image = to_pil(merged_tensor)
-
-                # 显示合并后的图像
                 merged_image.show()
             # loss2 = lpips_model(batch_ori, batch_new).mean()
             # loss2= Comp(lat_ori, lat_new).mean()

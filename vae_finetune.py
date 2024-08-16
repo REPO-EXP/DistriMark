@@ -190,7 +190,7 @@ for k in range(args.steps):
             #     tensor2 = to_tensor(image2)
             #     tensor3 = to_tensor(image3)
             #     tensor4 = to_tensor(image4)
-            #     merged_tensor = torch.cat([tensor1, tensor2,tensor3,tensor4], dim=2)  # 在横向（dim=2）合并
+            #     merged_tensor = torch.cat([tensor1, tensor2,tensor3,tensor4], dim=2)
             #     to_pil = transforms.ToPILImage()
             #     merged_image = to_pil(merged_tensor)
             #     merged_image.show()
